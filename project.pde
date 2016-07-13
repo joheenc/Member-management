@@ -2,19 +2,10 @@
 //Desktop Application Programming 2015-2016
 //John P. Stevens High School, Edison, NJ
 
-//This program was made using Processing, a Java library and IDE made by Casey Reas, Ben Fry, and Dan Shiffman
-//Note that the source code cannot be run in a standard IDE without first importing the Processing 3.0 library
+//This program was made using Processing, a Java library made by Casey Reas, Ben Fry, and Dan Shiffman
 //The Processing library makes it especially easy to design GUIS
 //My main goal in creating this program was to keep it as simple and user-friendly as possible (and, of course, make it functional)
-//The other packages I used include:
-//      FileReader-- to read files
-//      FileNotFoundException-- for error handling
-//      BufferedWriter and FileWriter--  to write to files
-//      Collections and Comparator--  to organize data in certain orders (i.e. alphabetically order a list)
-//      List--  to create a list
-//      Print and BufferedImage-- to print directly from the program
-//I have included extensive error handling in the form of try/catch loops that I marked out with comments throughout my code
-//This error handling makes it so that the program does not simply crash every time something unexpected happens
+//I have included error handling in the form of try/catch loops that I marked out with comments throughout my code
 //I made sure to add many comments throughout my program, especially in the logic-heavy parts, to make it easy to understand what I was thinking while making the program
 
 //The development process for me began with drawing a mock-up, including all of the screens, buttons, and their functionalities
