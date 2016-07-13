@@ -868,7 +868,7 @@ class PrintIt{                  //this is a class that makes it possible for me 
   Doc myDoc;
   PrintRequestAttributeSet aset;
   DocPrintJob job;
-  PrintIt(){                //basic class constructor
+  PrintIt(){
     myDoc = null;
     job = null;
     services = null;
