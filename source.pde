@@ -4,9 +4,9 @@
 
 
 
-import java.io.FileReader;              //to read files
-import java.io.FileNotFoundException;   //for error handling
-import java.io.BufferedWriter;          //to write to files
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,10 +17,10 @@ import com.sun.image.codec.jpeg.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-ArrayList<String[]> memberdata;               //ArrayList of String arrays to store all of the data collected from the master file
+ArrayList<String[]> memberdata;               //stores all of the data collected from the master file
 PFont font;
 String[] newmember, changeinput = new String[10];
-int screen, pagenum, checkbox, changebox, numselect;        //helper variable for adding/changing members-- stores which field is currently being added/changed
+int screen, pagenum, checkbox, changebox, numselect;
 boolean isadding, report1, report2, exportreport, anychange;
 Boolean[] selected = new Boolean[24], ischanging = new Boolean[24];
 int[] xarray = {18, 148, 248, 348, 448, 548, 698, 798, 898, 998},
