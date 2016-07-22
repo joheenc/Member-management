@@ -2,24 +2,7 @@
 //Desktop Application Programming 2015-2016
 //John P. Stevens High School, Edison, NJ
 
-//This program was made using Processing, a Java library made by Casey Reas, Ben Fry, and Dan Shiffman
-//The Processing library makes it especially easy to design GUIS
-//My main goal in creating this program was to keep it as simple and user-friendly as possible (and, of course, make it functional)
-//I have included error handling in the form of try/catch loops that I marked out with comments throughout my code
-//I made sure to add many comments throughout my program, especially in the logic-heavy parts, to make it easy to understand what I was thinking while making the program
 
-//The development process for me began with drawing a mock-up, including all of the screens, buttons, and their functionalities
-//I then divided the program into thirds-- the program itself, the first report, and the second report--
-//I did each third in a separate program and then, once they were all functional, put them together
-//In order to explain the most difficult challenge I faced I'll first explain the biggest Processing method, the draw() method
-//This method is called 30 times per second for the entire duration of the program-- this caused quite a bit of confusion all throughout the development process
-//One of the many examples is with adding members-- in the early stages of development when I was first implementing this function I had some trouble.
-//In addmember I would ask for each parameter-- the new member's state, name, email, etc...
-//I found that the program would ask for the first parameter but never actually take any input
-//Eventually I realized this was because I was calling addmember from the draw() method, and because of this it was being called 30 times per second without waiting for a response
-//To solve this problem I had to get rid of the method altogether and put it in mousePressed(), a method called once every time the mouse is clicked
-//This same workaround was used numerous times in my program (such as with changing and deleting members or printing/exporting reports).
-//Because of this you'll find many important actions actually being executed in mousePressed() 
 
 import java.io.FileReader;              //to read files
 import java.io.FileNotFoundException;   //for error handling
@@ -731,13 +714,13 @@ void exportseniorreport(String reportfile) {
       bw.newLine();
     }
   }
-  catch (IOException e) {}    //error handling
+  catch (IOException e) {}
   finally {
     if (bw != null){ 
       try { 
         bw.close();      //close file
       }
-      catch (IOException e) {}    //error handling  
+      catch (IOException e) {} 
     }
   }
 }
@@ -796,14 +779,14 @@ void printseniorreport() {
 }
 
 void printbalancereport() {
-  class Member{                    //creates a class for each member, with the following properties: 
-    public String state;                //member's state
-    public String membership_number;    //member number
-    public String first_name;           //member's first name
-    public String last_name;            //member's last name
-    public String year_joined;          //year the member joined
-    public String grade;                //member's grade
-    public String balance;              //member's current balance
+  class Member{                    //creates a class for each member
+    public String state;         
+    public String membership_number;   
+    public String first_name;          
+    public String last_name;          
+    public String year_joined;      
+    public String grade;
+    public String balance;              
     
     public Member(String st, String memid, String fn, String ln, String yr, String gr, String bal) {
       this.state = st;                                  //creates a function that can be called to set the values of the 
@@ -861,9 +844,9 @@ void printbalancereport() {
   fill(255);
 }
 
-class PrintIt{                  //this is a class that makes it possible for me to print straight from the program
-  PrintService[] services;        //this class works by first taking a screenshot when a method is called,
-  PrintService service;            //then commmunicating with the printer to send a print request
+class PrintIt{                  //takes a screenshot and prints
+  PrintService[] services;
+  PrintService service; 
   DocFlavor docflavor;
   Doc myDoc;
   PrintRequestAttributeSet aset;
