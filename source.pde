@@ -846,75 +846,75 @@ void printbalancereport() {
 
 class PrintIt{                  //takes a screenshot and prints
   PrintService[] services;
-  PrintService service; 
+  PrintService service;
+  PrintRequestAttributeSet aset; 
   DocFlavor docflavor;
   Doc myDoc;
-  PrintRequestAttributeSet aset;
   DocPrintJob job;
-  PrintIt(){
-    myDoc = null;
+  PrintIt() {
     job = null;
     services = null;
+    myDoc = null;
+    
     setService(PrintServiceLookup.lookupDefaultPrintService());
     setDocFlavor(DocFlavor.BYTE_ARRAY.AUTOSENSE);
     aset =  new HashPrintRequestAttributeSet();
   }
 
-  void setService(PrintService p)
-  {
-    service = p;
-  }
-  
   void setDocFlavor(DocFlavor d)
   {
     docflavor = d;  
+  }
+  
+  void setService(PrintService p)
+  {
+    service = p;
   }
 
   void listPrinters(){
     services = PrintServiceLookup.lookupPrintServices(null, null);
     for (int i = 0; i < services.length; i++) {
-  System.out.println(services[i].getName());
-  DocFlavor[] d = services[i].getSupportedDocFlavors();
-  for(int j = 0; j < d.length; j++)
-    System.out.println("  "+d[j].getMimeType());
+      System.out.println(services[i].getName());
+      DocFlavor[] d = services[i].getSupportedDocFlavors();
+      for(int j = 0; j < d.length; j++)
+        System.out.println("  "+d[j].getMimeType());
     }
     services = null;
   }
-
-  // prints a given image
+  
   void printJpg(PImage img){
     setDocFlavor(DocFlavor.BYTE_ARRAY.JPEG);
     print(bufferImage(img));
   }
-
-  // prints a given string
+  
   void printString(String s){
     setDocFlavor(DocFlavor.BYTE_ARRAY.AUTOSENSE);
     print(s.getBytes());
   }
 
   boolean print(byte[] b){
-    if(!service.isDocFlavorSupported(docflavor)){
+  
+    if(!service.isDocFlavorSupported(docflavor)) {
      println("MimeType: \""+docflavor.getMimeType()+"\" not supported by the currently selected printer");
      return false;
     }
     
     boolean ret = true;
-    try{
-  myDoc = new SimpleDoc(b, docflavor, null);  
+    try {
+      myDoc = new SimpleDoc(b, docflavor, null);  
     }
-    catch(Exception e){
-  println(e);
-  ret = false;
+    catch(Exception e) {
+      println(e);
+      ret = false;
     }  
     
     job = service.createPrintJob();
     try {
-  job.print(myDoc, aset);
+      job.print(myDoc, aset);
     } 
     catch (PrintException pe) {
-  println(pe);
-  ret = false;
+      println(pe);
+      ret = false;
     }
     
     return ret;
@@ -925,26 +925,24 @@ class PrintIt{                  //takes a screenshot and prints
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     BufferedImage img = new BufferedImage(srcimg.width, srcimg.height, 2);
     img = (BufferedImage)createImage(srcimg.width, srcimg.height, 0).getNative();
-    for(int i = 0; i < srcimg.width; i++)
-    {
-  for(int j = 0; j < srcimg.height; j++)
-  {
-    int id = j*srcimg.width+i;
-    img.setRGB(i,j, srcimg.pixels[id]); 
-  }
+    for(int i = 0; i < srcimg.width; i++) {
+      for(int j = 0; j < srcimg.height; j++) {
+        int id = j*srcimg.width+i;
+        img.setRGB(i,j, srcimg.pixels[id]); 
+      }
     }
-    try{
-  JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-  JPEGEncodeParam encpar = encoder.getDefaultJPEGEncodeParam(img);
-  encpar.setQuality(1,false);
-  encoder.setJPEGEncodeParam(encpar);
-  encoder.encode(img);
+    try {
+      JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+      JPEGEncodeParam encpar = encoder.getDefaultJPEGEncodeParam(img);
+      encpar.setQuality(1,false);
+      encoder.setJPEGEncodeParam(encpar);
+      encoder.encode(img);
     }
-    catch(FileNotFoundException e){
-  System.out.println(e);
+    catch(FileNotFoundException e) {
+      System.out.println(e);
     }
-    catch(IOException ioe){
-  System.out.println(ioe);
+    catch(IOException ioe) {
+      System.out.println(ioe);
     }
     return out.toByteArray();
   }
